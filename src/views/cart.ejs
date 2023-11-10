@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
+*{
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background-color:#4b4b4b;
+}
+
+header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
+  background-color: #ff4757;
+}
+
+.nav{
+  max-width: 1200px;
+  margin: auto;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo{
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-decoration: none;
+  text-transform: uppercase;
+  color:#ffffff;
+}
+
+.box{
+  color:white;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  position: relative;
+}
+
+.cart-count{
+  position: absolute;
+  background-color: #2f3542;
+  top: -5px;
+  right: 0;
+  padding: 3px;
+  height: 20px;
+  width: 20px;
+  line-height:20px ;
+  border-radius: 50%;
+  z-index: 99;
+}
+
+#cart-icon{
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding-top: 10px;
+}
+
+img{
+  width: 100%;
+}
+
+.container{
+  max-width: 1200px;
+  padding: 4rem;
+  margin: auto;
+  width: 100%;
+}
+
+h2.title{
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  color:#ffffff;
+}
+
+.shop-content{
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,auto));
+  gap:1.5rem;
+  justify-content: center;
+  align-content: center;
+}
+
+.food-box{
+  position: relative;
+  background-color: #fff;
+  padding: 10px;
+  box-shadow: 0 1px 4px rgba(40, 37, 37, 0.1);
+  border-radius: 3px;
+}
+
+.pic{
+  overflow: hidden;
+}
+
+.pic:hover img{
+transform: scale(1.5);
+}
+
+.food-img{
+  transition: 0.4s;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+
+.food-title{
+  font-size: 1rem;
+  font-weight: 600;
+  color:#ff6348;
+}
+
+.food-price{
+  font-weight:500 ;
+}
+
+.add-cart{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #2ed573;
+  color:white;
+  padding: 10px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.add-cart:hover{
+  background-color:rgba(255, 0, 0, 0.786);
+}
+  
+
+.cart{
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 400px;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 1px 4px rgba(40, 37, 37, 0.1);
+  z-index: 100;
+}
+
+.cart-active{
+  right:0;
+  transition: 0.5s;
+}
+
+.cart-title{
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  padding-bottom:20px ;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.cart-box{
+  display: grid;
+  grid-template-columns: 32% 50% 18%;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding-bottom: 10px;
+}
+
+.cart-img{
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
+  border:2px solid  rgba(0,0,0,0.1);
+  padding: 5px;
+}
+.detail-box{
+  display: grid;
+  row-gap: 0.5rem;  
+}
+.filter-btn {
+    /* Add your existing button styles here */
+    background-color: #2f3542;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .filter-btn:hover {
+    background-color: violet; /* Change this to the desired hover background color */
+    color: #2f3542; /* Change this to the desired hover text color */
+  }
+
+.price-box{
+  display: flex;
+    justify-content: space-between; 
+}
+
+.cart-food-title{
+   font-size: 1rem;
+   text-transform: uppercase;
+   color:#ff6348;
+   font-weight: 500;
+}
+
+.cart-price{
+  font-weight: 500;
+}
+
+.cart-quantity{
+  border:1px solid rgba(0,0,0,0.1);
+  outline:none ;
+  width: 2.4rem;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.cart-remove{
+  font-size: 24px;
+  color:red;
+  cursor: pointer;
+}
+
+.total{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+.total-title{
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.total-price{
+  margin-left: 0.5rem;
+}
+
+.btn-buy{
+  padding: 12px 20px;
+  background-color:#2f3542;
+  color:#fff;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+#cart-close{
+  position: absolute;
+  top: 1rem;
+  right: 0.8rem;
+  font-size: 2rem;
+  cursor: pointer;
+}
+#search{
+  width: 200px;
+  height: 30px;
+  outline: none;
+  padding: 0 10px;
+  border:2px solid #00b894;
+  border-radius: 3px;
+  font-size: 0.6rem;
+}
+</style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+
+      <a href="#" class="logo">
+        <ion-icon name="fast-food"></ion-icon>
+        Food Delight
+      </a>
+      <input type="text" id="search" placeholder="Search food...">
+      <div>
+        <button class="filter-btn" onclick="filterItems('All')">All</button>
+        <button class="filter-btn" onclick="filterItems('Plain')">Plain</button>
+        <button class="filter-btn" onclick="filterItems('Roast')">Roast</button>
+        <button class="filter-btn" onclick="filterItems('Parotta')">Porotta</button>
+        <button class="filter-btn" onclick="filterItems('fry')">Kadai fry</button>
+        <button class="filter-btn" onclick="filterItems('veechu')">Egg Vechu</button>
+        <!-- Add more buttons for other categories -->
+      </div>
+      <div class="box">
+        <div class="cart-count">0</div>
+        <ion-icon name="cart"  id="cart-icon" ></ion-icon>
+      </div>
+
+      <div class="cart">
+        <div class="cart-title">Cart Items</div>
+        <div class="cart-content">
+<!--
+          <div class="cart-box">
+            <img src="images/97.jpg" class="cart-img">
+            <div class="detail-box">
+              <div class="cart-food-title">Special Dosai</div>
+              <div class="price-box">
+                <div class="cart-price">Rs.72</div>
+                 <div class="cart-amt">Rs.72</div>
+             </div>
+              <input type="number" value="1" class="cart-quantity">
+            </div>
+            <ion-icon name="trash" class="cart-remove"></ion-icon>
+          </div>
+
+          <div class="cart-box">
+            <img src="images/97.jpg" class="cart-img">
+            <div class="detail-box">
+              <div class="cart-food-title">Special Dosai</div>
+              <div class="price-box">
+                <div class="cart-price">Rs.72</div>
+                 <div class="cart-amt">Rs.72</div>
+             </div>
+              <input type="number" value="1" class="cart-quantity">
+            </div>
+            <ion-icon name="trash" class="cart-remove"></ion-icon>
+          </div>
+        -->
+        </div>
+        
+      <div class="total">
+        <div class="total-title">Total</div>
+        <div class="total-price">Rs.0</div>
+      </div>
+
+      <button class="btn-buy">Place Order</button>
+
+      <ion-icon name="close" id="cart-close"></ion-icon>
+
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    <h2 class="title">Discover the Best Food</h2>
+    <div class="shop-content">
+
+
+      <div class="food-box">
+        <div class="pic">
+          <img src="data:image/jpeg;base64,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" class="food-img">
+        </div>
+        <h2 class="food-title">Plain</h2>
+        <span class="food-price">Rs.40</span>
+        <ion-icon name="cart" class="add-cart"></ion-icon>
+      </div>
+
+
+      <div class="food-box">
+        <div class="pic"><img src="data:image/jpeg;base64,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" class="food-img"></div>
+        <h2 class="food-title">Paper Roast</h2>
+        <span class="food-price">Rs.65</span>
+        <ion-icon name="cart" class="add-cart"></ion-icon>
+      </div>
+  
+      <div class="food-box">
+        <div class="pic"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZBHIKoun9pWIogkwkC2H4rqf5RBcJXS3affwNMdItRg&s" class="food-img"></div>
+        <h2 class="food-title">Onion Roast</h2>
+        <span class="food-price">Rs.80</span>
+        <ion-icon name="cart" class="add-cart"></ion-icon>
+      </div>
+  
+      <div class="food-box">
+        <div class="pic"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSED0jckVufssIQJEUOSu04Yj4jehYOaNhpK92Ue8AujQ&s" class="food-img"></div>
+        <h2 class="food-title">Egg Parotta</h2>
+        <span class="food-price">Rs.55</span>
+        <ion-icon name="cart" class="add-cart"></ion-icon>
+      </div>
+  
+      <div class="food-box">
+        <div class="pic"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzw1ciGhWN-PgaYiBQp3yFNTTjPcLjfXu2Xb3oy1d7EQ&s" class="food-img"></div>
+        <h2 class="food-title">Plain Omelette</h2>
+        <span class="food-price">Rs.25</span>
+        <ion-icon name="cart" class="add-cart"></ion-icon>
+      </div>
+  
+      <div class="food-box">
+        <div class="pic"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHIcS44yjNToxhAx75C0LAL0fIOoRWt51dpkRGfEC_0Q&s" class="food-img"></div>
+        <h2 class="food-title">Kadai Fry</h2>
+        <span class="food-price">Rs.150</span>
+        <ion-icon name="cart" class="add-cart"></ion-icon>
+      </div>
+  
+  
+      <div class="food-box">
+        <div class="pic"><img src="data:image/jpeg;base64,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" class="food-img"></div>
+        <h2 class="food-title">Egg Veechu</h2>
+        <span class="food-price">Rs.65</span>
+        <ion-icon name="cart" class="add-cart"></ion-icon>
+      </div>
+  
+  
+      <div class="food-box">
+        <div class="pic"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRO53q7eR7KyHa6M1nGkHCzjnqUqQN8XTru5V5q2OFbzQ&s" class="food-img"></div>
+        <h2 class="food-title">Egg Roast</h2>
+        <span class="food-price">Rs.65</span>
+        <ion-icon name="cart" class="add-cart"></ion-icon>
+      </div>
+  
+
+
+
+
+    </div>
+  </div>
+  <script >
+    const btnCart=document.querySelector('#cart-icon');
+    const cart=document.querySelector('.cart');
+    const btnClose=document.querySelector('#cart-close');
+    btnCart.addEventListener('click',()=>{
+       cart.classList.add('cart-active');
+    });
+
+    btnClose.addEventListener('click',()=>{
+      cart.classList.remove('cart-active');
+    });
+
+document.addEventListener('DOMContentLoaded',loadFood);
+
+function loadFood(){
+  loadContent();
+
+}
+
+function loadContent(){
+  //Remove Food Items  From Cart
+  let btnRemove=document.querySelectorAll('.cart-remove');
+  btnRemove.forEach((btn)=>{
+    btn.addEventListener('click',removeItem);
+  });
+
+  //Product Item Change Event
+  let qtyElements=document.querySelectorAll('.cart-quantity');
+  qtyElements.forEach((input)=>{
+    input.addEventListener('change',changeQty);
+  });
+
+  //Product Cart
+  
+  let cartBtns=document.querySelectorAll('.add-cart');
+  cartBtns.forEach((btn)=>{
+    btn.addEventListener('click',addCart);
+  });
+
+  updateTotal();
+}
+
+function filterItems(category) {
+      const foodBoxes = document.querySelectorAll('.food-box');
+      
+      foodBoxes.forEach(box => {
+        const title = box.querySelector('.food-title').innerHTML.toLowerCase();
+        
+        if (category.toLowerCase() === 'all' || title.includes(category.toLowerCase())) {
+          box.style.display = 'block';
+        } else {
+          box.style.display = 'none';
+        }
+      });
+    }
+
+    // Add event listener for search bar
+    const searchBar = document.getElementById('search');
+    searchBar.addEventListener('input', function() {
+      filterItems(this.value);
+    });
+//Remove Item
+function removeItem(){
+  if(confirm('Are Your Sure to Remove')){
+    let title=this.parentElement.querySelector('.cart-food-title').innerHTML;
+    itemList=itemList.filter(el=>el.title!=title);
+    this.parentElement.remove();
+    loadContent();
+  }
+}
+
+//Change Quantity
+function changeQty(){
+  if(isNaN(this.value) || this.value<1){
+    this.value=1;
+  }
+  loadContent();
+}
+
+let itemList=[];
+
+//Add Cart
+function addCart(){
+ let food=this.parentElement;
+ let title=food.querySelector('.food-title').innerHTML;
+ let price=food.querySelector('.food-price').innerHTML;
+ let imgSrc=food.querySelector('.food-img').src;
+ //console.log(title,price,imgSrc);
+ 
+ let newProduct={title,price,imgSrc}
+
+ //Check Product already Exist in Cart
+ if(itemList.find((el)=>el.title==newProduct.title)){
+  alert("Product Already added in Cart");
+  return;
+ }else{
+  itemList.push(newProduct);
+ }
+
+
+let newProductElement= createCartProduct(title,price,imgSrc);
+let element=document.createElement('div');
+element.innerHTML=newProductElement;
+let cartBasket=document.querySelector('.cart-content');
+cartBasket.append(element);
+loadContent();
+}
+
+
+function createCartProduct(title,price,imgSrc){
+
+  return `
+  <div class="cart-box">
+  <img src="${imgSrc}" class="cart-img">
+  <div class="detail-box">
+    <div class="cart-food-title">${title}</div>
+    <div class="price-box">
+      <div class="cart-price">${price}</div>
+       <div class="cart-amt">${price}</div>
+   </div>
+    <input type="number" value="1" class="cart-quantity">
+  </div>
+  <ion-icon name="trash" class="cart-remove"></ion-icon>
+</div>
+  `;
+}
+
+function updateTotal()
+{
+  const cartItems=document.querySelectorAll('.cart-box');
+  const totalValue=document.querySelector('.total-price');
+
+  let total=0;
+
+  cartItems.forEach(product=>{
+    let priceElement=product.querySelector('.cart-price');
+    let price=parseFloat(priceElement.innerHTML.replace("Rs.",""));
+    let qty=product.querySelector('.cart-quantity').value;
+    total+=(price*qty);
+    product.querySelector('.cart-amt').innerText="Rs."+(price*qty);
+
+  });
+
+  totalValue.innerHTML='Rs.'+total;
+
+
+  // Add Product Count in Cart Icon
+
+  const cartCount=document.querySelector('.cart-count');
+  let count=itemList.length;
+  cartCount.innerHTML=count;
+
+  if(count==0){
+    cartCount.style.display='none';
+  }else{
+    cartCount.style.display='block';
+  }
+
+
+}
+
+  </script>
+</body>
+</html>

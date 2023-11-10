@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        /* Reset some default browser styles */
+        body, h1, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Apply a background color to the whole page */
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Style the header and navigation */
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav li {
+            display: inline;
+            margin: 0 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Style the hero section with a background image */
+        .hero {
+            background-image: url("image5.jpg"); /* Adjust the path if the image is in a different directory */
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .hero h1 {
+            font-size: 2.5em;
+            margin: 20px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Style the features section */
+        .features {
+            display: flex;
+            justify-content: center;
+            padding: 50px 0;
+        }
+
+        .feature {
+            text-align: center;
+            margin: 0 20px;
+        }
+
+        .feature i {
+            font-size: 2em;
+            margin: 20px 0;
+        }
+
+        /* Style the footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/cart">Product</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Welcome to Our Home Page</h1>
+        <p>Your source for all things amazing!</p>
+        <a href="/about" class="btn">Learn More</a>
+    </section>
+
+    <section class="features">
+        <!-- Feature sections content here -->
+    </section>
+
+    <footer>
+        <p>&copy; 2023 FoodEase</p>
+    </footer>
+</body>
+</html>
